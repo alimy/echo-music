@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if test -f ./setup; then
+    source ./setup
+fi
+
+export USER=echomusic
+exec gosu $USER /app/echomusci/echo-music serv --config /data/echomusic/conf/app.toml

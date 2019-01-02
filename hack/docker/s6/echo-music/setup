@@ -1,0 +1,7 @@
+#!/bin/sh
+
+cd /app/echomusic
+
+# Link volumed data with app data
+ln -sfn /data/echomusic/log  ./log
+ln -sfn /data/echomusic/data ./data
