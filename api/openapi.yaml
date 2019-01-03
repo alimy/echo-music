@@ -12,7 +12,20 @@ info:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
 paths:
-  /albums:
+  /v1/appinfo:
+    get:
+      summary: get application info
+      operationId: getAppInfo
+      description: |
+        Get application information
+      responses:
+        '200':
+          description: get application info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppInfo'
+  /v1/albums:
     get:
       summary: get albums
       operationId: getAlbums
@@ -63,7 +76,7 @@ paths:
             schema:
               $ref: '#/components/schemas/AlbumsItem'
         description: Albums item to update
-  '/albums/{albumId}':
+  '/v1/albums/{albumId}':
     get:
       summary: Get album by ID
       description: Returns a single album
@@ -110,6 +123,18 @@ paths:
           description: Album not found
 components:
   schemas:
+    AppInfo:
+      type: object
+      required:
+        - profiles
+        - services
+      properties:
+        profiles:
+          type: string
+          example: echo-music
+        services:
+          type: string
+          example: albums infomation
     AlbumsItem:
       type: object
       required:
