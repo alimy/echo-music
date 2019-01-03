@@ -2,51 +2,54 @@ package serve
 
 import (
 	"github.com/alimy/echo-music/api/v1"
-	"github.com/alimy/echo-music/pkg/portal"
 	"github.com/labstack/echo"
 	"github.com/unisx/logus"
 	"net/http"
-	"time"
 )
 
-type Config struct {
-	CertFile    string
-	KeyFile     string
-	EnableHttps bool
+func init() {
+	api.Register(api.ApiGetAppInfo, getAppInfo)
+	api.Register(api.ApiGetAlbums, getAlbums)
+	api.Register(api.ApiCreateAlbums, createAlbums)
+	api.Register(api.ApiUpdateAlbums, updateAlbums)
+	api.Register(api.ApiGetAlbumsById, getAlbumsById)
+	api.Register(api.ApiDeleteAlbumsById, deleteAlbumsById)
 }
 
-func StartService(config *Config) {
-	e := echo.New()
+func getAppInfo(context echo.Context) error {
+	// TODO
+	logus.Debug("get application information")
+	return context.String(http.StatusOK, "get application information")
+}
 
-	// Enable debug
-	e.Debug = true
+func getAlbums(context echo.Context) error {
+	// TODO
+	logus.Debug("get albums")
+	return context.String(http.StatusOK, "get albums")
+}
 
-	// Install portal router
-	portal.InstallWith(e)
+func createAlbums(context echo.Context) error {
+	// TODO
+	logus.Debug("create albums")
+	return context.String(http.StatusCreated, "Albums item created")
+}
 
-	// Install api router
-	api.InstallWith(e, api.OperationIds{
-		api.ApiGetAlbums:        getAlbums,
-		api.ApiCreateAlbums:     createAlbums,
-		api.ApiUpdateAlbums:     updateAlbums,
-		api.ApiGetAlbumsById:    getAlbumsById,
-		api.ApiDeleteAlbumsById: deleteAlbumsById,
-	})
+func updateAlbums(context echo.Context) error {
+	// TODO
+	logus.Debug("update albums")
+	return context.String(http.StatusCreated, "Albums item updated")
+}
 
-	// Setup http.Server
-	server := &http.Server{
-		Addr: "127.0.0.1:8080",
-		// Good practice: enforce timeouts for servers you create!
-		WriteTimeout: 15 * time.Second,
-		ReadTimeout:  15 * time.Second,
-	}
+func getAlbumsById(context echo.Context) error {
+	// TODO
+	albumId := context.Param("albumId")
+	logus.Debug("get albums by id", logus.String("albumId", albumId))
+	return context.String(http.StatusOK, "get albums by id")
+}
 
-	// Start http.Server
-	if config.EnableHttps {
-		logus.Info("listen and serve in https://:8080")
-		e.StartServer(server)
-	} else {
-		logus.Info("listen and serve in http://:8080")
-		e.StartServer(server)
-	}
+func deleteAlbumsById(context echo.Context) error {
+	// TODO
+	albumId := context.Param("albumId")
+	logus.Info("delete albums", logus.String("albumId", albumId))
+	return context.String(http.StatusOK, "Albums item deleted")
 }

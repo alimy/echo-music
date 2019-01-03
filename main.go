@@ -15,9 +15,10 @@ package main
 
 import (
 	"github.com/alimy/echo-music/cmd"
+	"github.com/unisx/logus"
+
 	_ "github.com/alimy/echo-music/module/serve/cmd"
 	_ "github.com/alimy/echo-music/version"
-	"github.com/unisx/logus"
 )
 
 func main() {
@@ -25,9 +26,9 @@ func main() {
 
 	// Setup root cli command of application
 	cmd.Setup(
-		"echo-music",                        // command name
-		"music infomation service",          // command short describe
-		"music infomation provider service", // command long describe
+		"echo-music",                         // command name
+		"music information service",          // command short describe
+		"music information provider service", // command long describe
 	)
 
 	// Execute start application

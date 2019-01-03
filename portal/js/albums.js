@@ -1,9 +1,9 @@
 angular.module('albums', ['ngResource', 'ui.bootstrap']).
     factory('Albums', function ($resource) {
-        return $resource('albums');
+        return $resource('v1/albums/');
     }).
     factory('Album', function ($resource) {
-        return $resource('albums/:id', {id: '@id'});
+        return $resource('v1/albums/:id', {id: '@id'});
     }).
     factory("EditorStatus", function () {
         var editorEnabled = {};

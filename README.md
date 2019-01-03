@@ -6,8 +6,8 @@ This project is inspiration like [spring-music](https://github.com/cloudfoundry-
 ```bash
 $ git clone https://github.com/alimy/echo-music
 $ cd echo-music
-$ make build
-$ ./echo-music serve
+$ make serve
+$ ./echo-music serve # if success you can browser site in http://:8080/static/
 ```
 
 ### OpenApi documents
